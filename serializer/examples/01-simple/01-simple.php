@@ -2,8 +2,10 @@
 
 declare(strict_types=1);
 
-require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
+use Examples\Serializer;
 
-$serializer = \Examples\Serializer\Factory::create();
+require_once dirname(__DIR__) . '/autoload.php';
 
-var_dump($serializer->supportsDecoding('json'));
+$serializer = Serializer\Factory::create();
+
+dump($serializer->supportsDecoding('json'));
