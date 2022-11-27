@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Examples\Serializer;
+namespace Example\Serializer;
 
 use Doctrine\Common\Annotations\AnnotationReader;
 use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;
