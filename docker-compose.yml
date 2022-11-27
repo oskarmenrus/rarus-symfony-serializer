@@ -1,8 +1,8 @@
 version: '3'
 services:
-  examples-php-cli:
-    build:
-      context: ./docker
-      dockerfile: php-cli.docker
-    volumes:
-      - ./serializer:/serializer
+    examples-php-cli:
+        build:
+            context: ./serializer
+            dockerfile: docker/php-cli.docker
+        volumes:
+            - ./serializer:/serializer
