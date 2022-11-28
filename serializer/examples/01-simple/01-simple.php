@@ -13,14 +13,15 @@ $data = [
     'id'        => 1,
     'name'      => 'Danil',
     'rating'    => 4.9,
-    'telephone' => '+7 (978) 757-94-61', // Оригинальное свойство класса: $phone
+    'telephone' => '+7 (978) 757-94-61',
     'active'    => true,
+    'roles'     => ['user', 'subscriber']
 ];
 
 /**
- * Для удобства в примерах используется работа с массивами, но можно работать и с закодированными строками:
+ * Для удобства в примерах далее используются с массивы, но можно работать и с закодированными строками:
  * $simpleCommand = $serializer->deserialize(json_encode($data), Dto\SimpleCommand::class, 'json');
- * В этом случае Serializer дополнительно использует соответствующий DecoderInterface
+ * В этом случае Serializer дополнительно использует соответствующий формату DecoderInterface и наоборот.
  */
 $simpleCommand = $serializer->denormalize($data, Examples\Simple\Command::class);
 

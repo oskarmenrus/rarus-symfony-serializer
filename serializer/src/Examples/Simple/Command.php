@@ -4,18 +4,24 @@ declare(strict_types=1);
 
 namespace Example\Examples\Simple;
 
-use Symfony\Component\Serializer\Annotation;
-
+/**
+ * Пример DTO в идеальном мире: все параметры в запросе совпадают с атрибутами класса
+ * @path "/serializer/examples/01-simple/01-simple.php"
+ */
 class Command
 {
     public function __construct(
-        readonly private ?int $id,
-        readonly private string $name,
-        readonly private float $rating,
+        readonly int $id,
 
-        #[Annotation\SerializedName('telephone')]
-        readonly private string $phone,
-        readonly private bool $active,
+        readonly string $name,
+
+        readonly float $rating,
+
+        readonly string $phone,
+
+        readonly bool $active,
+
+        readonly array $roles,
     ) {
     }
 }
