@@ -1,9 +1,11 @@
+# Сокращения и комбинации команд
 init: docker-build docker-up examples-init
 
 up: docker-up
 down: docker-down
 debug: examples-debug
 
+# Команды для инициализации проекта
 docker-up:
 	docker-compose up -d
 
@@ -21,5 +23,9 @@ examples-composer-install:
 examples-composer-dump:
 	docker-compose run --rm examples-php-cli composer dump-autoload
 
-examples-debug:
-	docker-compose run --rm examples-php-cli php debug/index.php
+# Команды для запуска скриптов с примерами
+examples-simple:
+	docker-compose run --rm examples-php-cli php examples/01-simple/01-simple.php
+
+examples-custom:
+	docker-compose run --rm examples-php-cli php examples/02-custom/02-custom.php

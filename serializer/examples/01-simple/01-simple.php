@@ -1,4 +1,5 @@
 <?php
+/** @noinspection ForgottenDebugOutputInspection */
 
 declare(strict_types=1);
 
@@ -9,13 +10,17 @@ require_once dirname(__DIR__) . '/autoload.php';
 
 $serializer = Serializer\Factory::create();
 
+// Ключ массива === название свойства класса
 $data = [
-    'id'        => 1,
-    'name'      => 'Danil',
-    'rating'    => 4.9,
-    'telephone' => '+7 (978) 757-94-61',
-    'active'    => true,
-    'roles'     => ['user', 'subscriber']
+    'int'      => 1,
+    'string'   => 'Danil',
+    'float'    => 4.9,
+    'bool'     => true,
+    'array'    => ['user', 'subscriber'],
+    'nullable' => null, // Если явно не передавать null: Serializer заполнит его сам, при отсутствии в массиве
+    'mixed'    => static function () { // O_o можно даже так
+        return 'closure';
+    },
 ];
 
 /**
