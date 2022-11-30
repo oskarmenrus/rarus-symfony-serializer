@@ -7,11 +7,12 @@ namespace Example\Examples\Custom;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
 use Symfony\Component\PropertyInfo\PropertyInfoExtractor;
 use Symfony\Component\Serializer\Annotation;
+use Symfony\Component\Serializer\Context\Normalizer\AbstractNormalizerContextBuilder;
 
 /**
  * Более сложный пример с применением трюков Serializer.
  * Порядок заполнения свойств: конструктор, методы, публичные свойства.
- * @path "ProjectDir/serializer/examples/02-custom/02-custom.php"
+ * @see "ProjectDir/serializer/examples/02-custom/02-custom.php"
  *
  * ВАЖНО: не все NormalizerInterface могут работать с приватными свойствами.
  * В документации можно ознакомиться с одним из таких примеров, работающим через рефлексию.
@@ -28,7 +29,9 @@ class Dto
      */
     private array $names = [];
 
-    private bool $isBool;
+    readonly private bool $isBool;
+
+    readonly private string $currentUser;
 
     public function __construct(
         // Название свойства в исходных данных не совпадает с названием в классе
@@ -46,8 +49,16 @@ class Dto
         // Serializer не преобразует никак типы: это не его ответственность.
         // Если из формы прилетает значение чек-бокса, то конвертировать его в bool можно в конструкторе или сеттере
         string $isBool,
+
+        /**
+         * Допустим, этот параметр может браться только из сессии: передаем его в Serializer как параметр по умолчанию
+         * Для удобства можно воспользоваться построителем контекста: {@see AbstractNormalizerContextBuilder}
+         */
+        string $currentUser,
     ) {
         $this->isBool = $isBool === 'Y';
+
+        $this->currentUser = $currentUser;
     }
 
     public function getNames(): array

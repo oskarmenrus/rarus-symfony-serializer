@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Example\Examples;
 use Example\Serializer;
+use Symfony\Component\Serializer\Context;
 
 require_once dirname(__DIR__) . '/autoload.php';
 
@@ -21,8 +22,17 @@ $data = [
     ],
     'names'        => ['name1', 'name2'],
     'isBool'       => 'Y',
+//    'currentUser'       => 'sokdan', // Это свойство не передается во входных данных, но оно нужно в конструкторе
 ];
 
-$customDto = $serializer->denormalize($data, Examples\Custom\Dto::class);
+$contextBuilder = (new Context\Normalizer\ObjectNormalizerContextBuilder())
+    ->withDefaultContructorArguments([Examples\Custom\Dto::class => ['currentUser' => 'sokdan']]);
+
+$customDto = $serializer->denormalize(
+    $data,
+    Examples\Custom\Dto::class,
+    null,
+    $contextBuilder->toArray()
+);
 
 dump($customDto);
