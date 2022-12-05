@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Example\Serializer;
 
 use Doctrine\Common\Annotations\AnnotationReader;
+use Example\Serializer\Normalizers\DateTimeMicroseconds;
 use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;
 use Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor;
 use Symfony\Component\PropertyInfo\PropertyInfoExtractor;
@@ -19,7 +20,8 @@ use Symfony\Component\Serializer\Serializer;
 
 class Factory
 {
-    public static function create(): Serializer
+    // Serializer настроенный по умолчанию
+    public static function default(): Serializer
     {
         $classMetadataFactory = new ClassMetadataFactory(new AnnotationLoader(new AnnotationReader()));
         $metadataAwareNameConverter = new MetadataAwareNameConverter($classMetadataFactory);
@@ -38,5 +40,23 @@ class Factory
         ];
 
         return new Serializer($normalizers, $encoders);
+    }
+
+    /**
+     * Serializer с конфликтом Normalizers
+     * @see "ProjectDir/serializer/examples/03-conflict/03-conflict.php"
+     *
+     * Если углубиться немного в код и посмотреть логику выбора {Normalizer/Denormalizer}Interface.
+     * Окажется, что выбирается тот, который первым подходит под условия и в принципе находится ближе к началу массива.
+     * Вполне логично, но может привести к ошибкам.
+     */
+    public static function conflict(): Serializer
+    {
+        $normalizers = [
+            new DateTimeMicroseconds(),
+            new DateTimeNormalizer(),
+        ];
+
+        return new Serializer($normalizers, []);
     }
 }

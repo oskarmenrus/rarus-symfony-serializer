@@ -29,3 +29,6 @@ examples-simple:
 
 examples-custom:
 	docker-compose run --rm examples-php-cli php examples/02-custom/02-custom.php
+
+examples-conflict:
+	docker-compose run --rm examples-php-cli php examples/03-conflict/03-conflict.php

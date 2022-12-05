@@ -8,7 +8,7 @@ use Symfony\Component\Serializer\Context;
 
 require_once dirname(__DIR__) . '/autoload.php';
 
-$serializer = Serializer\Factory::create();
+$serializer = Serializer\Factory::default();
 
 $data = [
     'identifier'   => '00000000-0000-0000-0000-000000000001', // Оригинальное название свойства: $uuid

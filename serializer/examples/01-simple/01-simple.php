@@ -8,7 +8,7 @@ use Example\Serializer;
 
 require_once dirname(__DIR__) . '/autoload.php';
 
-$serializer = Serializer\Factory::create();
+$serializer = Serializer\Factory::default();
 
 // Ключ массива === название свойства класса
 $data = [
