@@ -35,3 +35,6 @@ examples-conflict:
 
 examples-populate:
 	docker-compose run --rm examples-php-cli php examples/04-populate/04-populate.php
+
+examples-errors-collecting:
+	docker-compose run --rm examples-php-cli php examples/05-errors-collecting/05-errors-collecting.php
