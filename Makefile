@@ -41,3 +41,6 @@ examples-errors-collecting:
 
 examples-complex:
 	docker-compose run --rm examples-php-cli php examples/06-complex/06-complex.php
+
+examples-extra-complexity:
+	docker-compose run --rm examples-php-cli php examples/07-extra-complexity/07-extra-complexity.php
