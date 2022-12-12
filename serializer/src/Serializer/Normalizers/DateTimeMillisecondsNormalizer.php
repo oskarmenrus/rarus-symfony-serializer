@@ -8,7 +8,7 @@ use DateTime;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class DateTimeMicroseconds implements DenormalizerInterface, NormalizerInterface
+class DateTimeMillisecondsNormalizer implements DenormalizerInterface, NormalizerInterface
 {
     public function denormalize($data, string $type, string $format = null, array $context = [])
     {

@@ -38,3 +38,6 @@ examples-populate:
 
 examples-errors-collecting:
 	docker-compose run --rm examples-php-cli php examples/05-errors-collecting/05-errors-collecting.php
+
+examples-complex:
+	docker-compose run --rm examples-php-cli php examples/06-complex/06-complex.php

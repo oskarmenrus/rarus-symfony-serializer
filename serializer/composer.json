@@ -4,7 +4,8 @@
         "symfony/property-access": "^6.1",
         "doctrine/annotations": "^1.13",
         "symfony/var-dumper": "^6.1",
-        "phpdocumentor/reflection-docblock": "^5.3"
+        "phpdocumentor/reflection-docblock": "^5.3",
+        "doctrine/collections": "^2.1"
     },
     "autoload": {
         "psr-4": {
