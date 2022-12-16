@@ -31,8 +31,10 @@ class Company
     /** @var null|Manager[] $managers */
     private Collection $managers;
 
+    #[Annotation\SerializedName('branch_type')]
     private ?string $branchType;
 
+    #[Annotation\SerializedName('branch_count')]
     private ?int $branchCount;
 
     private string $type;
@@ -71,8 +73,10 @@ class Company
     #[Annotation\SerializedName('ogrn_date')]
     private UnixMillisecond $ogrnDate;
 
+    #[Annotation\SerializedName('okved_type')]
     private ?string $okvedType;
 
+    #[Annotation\SerializedName('employee_count')]
     private ?int $employeeCnt;
 
     public function __construct(
@@ -99,7 +103,7 @@ class Company
         ?array $emails,
         UnixMillisecond $ogrnDate,
         ?string $okvedType,
-        ?int $employeeCnt
+        ?int $employeeCnt,
     ) {
         $this->name = $name;
         $this->kpp = $kpp;

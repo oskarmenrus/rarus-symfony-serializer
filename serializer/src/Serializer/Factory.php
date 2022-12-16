@@ -6,6 +6,7 @@ namespace Example\Serializer;
 
 use Doctrine\Common\Annotations\AnnotationReader;
 use Example\Serializer\Normalizers\DateTimeMillisecondsNormalizer;
+use Example\Serializer\Normalizers\OpfNormalizer;
 use Example\Serializer\Normalizers\UnixMillisecondsNormalizer;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
 use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;
@@ -16,6 +17,7 @@ use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory;
 use Symfony\Component\Serializer\Mapping\Loader\AnnotationLoader;
 use Symfony\Component\Serializer\NameConverter\MetadataAwareNameConverter;
 use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
+use Symfony\Component\Serializer\Normalizer\CustomNormalizer;
 use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
@@ -77,6 +79,7 @@ class Factory
         $encoders = [new JsonEncoder()];
         $normalizers = [
             new UnixMillisecondsNormalizer(),
+            new CustomNormalizer(),
             new DateTimeNormalizer(),
             new ArrayDenormalizer(),
             new ObjectNormalizer(

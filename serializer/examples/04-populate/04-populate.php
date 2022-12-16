@@ -35,7 +35,7 @@ dump($populate);
 ########################################################################################################################
 
 $data = [
-    'login'     => 'random', // Свойство будет проигнорировано благодаря атрибутам + context guard
+    'login'     => 'random', // Свойство будет проигнорировано благодаря атрибутам + withAllowExtraAttributes(false)
     'injection' => 'hack', // Exception
     'name'      => 'Edward',
     'surname'   => 'Snowden',
@@ -44,7 +44,7 @@ $data = [
 $command = new Examples\Populate\Command('sokdan');
 
 $context = (new Context\Normalizer\ObjectNormalizerContextBuilder())
-    ->withAllowExtraAttributes(false) // Исключаем любые свойства, который нет в классе
+    ->withAllowExtraAttributes(false) // Исключаем любые свойства, которых нет в классе
     ->withObjectToPopulate($command)
     ->toArray();
 

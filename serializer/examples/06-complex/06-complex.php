@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Example\Examples;
 use Example\Serializer;
+use Symfony\Component\Serializer\Context;
 
 require_once dirname(__DIR__) . '/autoload.php';
 
@@ -20,14 +21,20 @@ $data = [
         'type'  => 'capital_type',
         'value' => 123.321,
     ],
-    'invalid'        => null,
     'management'     =>
         [
             'name'         => 'Surname Name Other',
             'post'         => 'Manager',
             'disqualified' => false,
         ],
-    'founders'       => null,
+    'founders'       => [
+        [
+            'inn'   => 'inn',
+            'name'  => 'name',
+            'type'  => 'type',
+            'share' => 1,
+        ]
+    ],
     'managers'       => [
         [
             'inn'        => 'inn',
@@ -87,7 +94,11 @@ $data = [
     // И еще много данных, которые приходят в ответе от сервиса
 ];
 
+$context = (new Context\Normalizer\ObjectNormalizerContextBuilder())
+    ->withAllowExtraAttributes(false)
+    ->toArray();
+
 /** @var Examples\Complex\Company $company */
-$company = $serializer->denormalize($data, Examples\Complex\Company::class);
+$company = $serializer->denormalize($data, Examples\Complex\Company::class, null, $context);
 
 dump($company);
