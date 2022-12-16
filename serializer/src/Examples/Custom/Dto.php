@@ -33,6 +33,8 @@ class Dto
 
     readonly private string $currentUser;
 
+    private $exists;
+
     public function __construct(
         // Название свойства в исходных данных не совпадает с названием в классе
         #[Annotation\SerializedName('identifier')]
@@ -74,5 +76,20 @@ class Dto
     public function removeName(string $name): void
     {
         unset($this->names[$name]);
+    }
+
+    // Благодаря этому методу Serializer сможет понять, что:
+    // 1. Свойство $exist в методе setExists() типа bool.
+    // 2. В случае несовпадения типов — выбросить исключение.
+    // Работает и с has/can + доп. настройки PropertyTypeExtractorInterface.
+    // Удобно, если использовать старые версии php без типизации свойств, в каком-нибудь 7.1.33 :)
+    public function isExists(): bool
+    {
+        return $this->exists;
+    }
+
+    public function setExists($exists): void
+    {
+        $this->exists = $exists;
     }
 }

@@ -23,6 +23,7 @@ $data = [
     'names'        => ['name1', 'name2'],
     'isBool'       => 'Y',
 //    'currentUser'       => 'sokdan', // Это свойство не передается во входных данных, но оно нужно в конструкторе
+//    'exists'    => 'string', // Ожидается, что это свойство будет типа bool, а не string
 ];
 
 $contextBuilder = (new Context\Normalizer\ObjectNormalizerContextBuilder())
