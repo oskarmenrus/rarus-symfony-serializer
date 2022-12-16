@@ -21,6 +21,8 @@ $command = new Examples\Populate\Command('sokdan');
 
 $context = (new Context\Normalizer\ObjectNormalizerContextBuilder())
     ->withObjectToPopulate($command)
+    // Осторожно: «Typed property Command::$name must not be accessed before initialization»
+    ->withDeepObjectToPopulate(true)
     ->toArray();
 
 $populate = $serializer->denormalize($data, Examples\Populate\Command::class, null, $context);

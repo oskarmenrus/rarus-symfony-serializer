@@ -18,8 +18,9 @@ use Symfony\Component\Serializer\Annotation;
  */
 class Command
 {
-    public string $name;
-    public string $surname;
+    /** @var string  */
+    public $name;
+    public string $surname = '';
 
     public function __construct(
         #[Annotation\Ignore]
