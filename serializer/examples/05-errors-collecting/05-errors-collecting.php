@@ -8,6 +8,7 @@ declare(strict_types=1);
 use Example\Examples;
 use Example\Serializer;
 use Symfony\Component\Serializer\Exception;
+use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
 
@@ -27,6 +28,10 @@ require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
  */
 try {
     $serializer = Serializer\Factory::default();
+
+    $dto = $serializer->denormalize([], stdClass::class, 'json', [
+        DenormalizerInterface::COLLECT_DENORMALIZATION_ERRORS => true,
+    ]);
 
 //    $serializer->serialize();
 //    $serializer->deserialize();
