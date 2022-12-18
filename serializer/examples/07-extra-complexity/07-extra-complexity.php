@@ -39,7 +39,7 @@ $context = (new Context\Normalizer\ObjectNormalizerContextBuilder())
     ->toArray();
 
 $firstFilter = $serializer->denormalize(null, type: ExtraComplexity\FirstFilter::class, context: $context);
-$secondFilter = $serializer->denormalize(null, type: ExtraComplexity\FirstFilter::class, context: $context);
+$secondFilter = $serializer->denormalize(null, type: ExtraComplexity\SecondFilter::class, context: $context);
 
 dump($firstFilter);
 dump($secondFilter);
