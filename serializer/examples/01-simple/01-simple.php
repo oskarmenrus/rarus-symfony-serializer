@@ -6,7 +6,7 @@ declare(strict_types=1);
 use Example\Examples;
 use Example\Serializer;
 
-require_once dirname(__DIR__) . '/autoload.php';
+require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
 
 $serializer = Serializer\Factory::default();
 

@@ -133,6 +133,21 @@ class Company
         $this->founders = new ArrayCollection($founders ?: []);
         $this->okveds = new ArrayCollection($okveds ?: []);
         $this->emails = new ArrayCollection($emails ?: []);
+
+        /** @var Founder $founder */
+        foreach ($this->getFounders() as $founder) {
+            $founder->setCompany($this);
+        }
+
+        /** @var Okved $okved */
+        foreach ($this->getOkveds() as $okved) {
+            $okved->setCompany($this);
+        }
+
+        /** @var Email $email */
+        foreach ($this->getEmails() as $email) {
+            $email->setCompany($this);
+        }
     }
 
     public function getManagers(): Collection

@@ -9,7 +9,7 @@ use Example\Examples;
 use Example\Serializer;
 use Symfony\Component\Serializer\Exception;
 
-require_once dirname(__DIR__) . '/autoload.php';
+require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
 
 /**
  * В этом примере просто перечислены все исключения, которые есть в Serializer.

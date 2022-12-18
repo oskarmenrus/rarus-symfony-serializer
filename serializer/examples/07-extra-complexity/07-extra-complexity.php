@@ -6,7 +6,7 @@ use Example\Examples\ExtraComplexity;
 use Example\Serializer;
 use Symfony\Component\Serializer\Context;
 
-require_once dirname(__DIR__) . '/autoload.php';
+require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
 
 $serializer = Serializer\Factory::default();
 

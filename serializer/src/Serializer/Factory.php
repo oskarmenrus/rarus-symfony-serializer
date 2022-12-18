@@ -6,7 +6,6 @@ namespace Example\Serializer;
 
 use Doctrine\Common\Annotations\AnnotationReader;
 use Example\Serializer\Normalizers\DateTimeMillisecondsNormalizer;
-use Example\Serializer\Normalizers\OpfNormalizer;
 use Example\Serializer\Normalizers\UnixMillisecondsNormalizer;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
 use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;

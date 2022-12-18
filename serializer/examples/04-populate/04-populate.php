@@ -6,7 +6,7 @@ use Example\Examples;
 use Example\Serializer;
 use Symfony\Component\Serializer\Context;
 
-require_once dirname(__DIR__) . '/autoload.php';
+require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
 
 $serializer = Serializer\Factory::default();
 
@@ -21,8 +21,6 @@ $command = new Examples\Populate\Command('sokdan');
 
 $context = (new Context\Normalizer\ObjectNormalizerContextBuilder())
     ->withObjectToPopulate($command)
-    // Осторожно: «Typed property Command::$name must not be accessed before initialization»
-    ->withDeepObjectToPopulate(true)
     ->toArray();
 
 $populate = $serializer->denormalize($data, Examples\Populate\Command::class, null, $context);
@@ -47,6 +45,8 @@ $command = new Examples\Populate\Command('sokdan');
 
 $context = (new Context\Normalizer\ObjectNormalizerContextBuilder())
     ->withAllowExtraAttributes(false) // Исключаем любые свойства, которых нет в классе
+    // Осторожно: «Typed property Command::$name must not be accessed before initialization»
+    ->withDeepObjectToPopulate(true)
     ->withObjectToPopulate($command)
     ->toArray();
 
