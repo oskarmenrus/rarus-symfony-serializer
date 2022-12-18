@@ -65,6 +65,9 @@ class Opf implements Normalizer\DenormalizableInterface
         $this->full = $data['full'];
         $this->short = $data['short'];
 
-        $this->denormalizedAt = $denormalizer->denormalize(date('Y-m-d H:i:s.u'), \DateTimeImmutable::class);
+        $this->denormalizedAt = $denormalizer->denormalize(
+            date('Y-m-d H:i:s.u'),
+            \DateTimeImmutable::class
+        );
     }
 }

@@ -20,6 +20,7 @@ class UnixMillisecond
         $this->unixTimeWithMilliseconds = $unixTimeWithMilliseconds;
     }
 
+    /** Это, конечно, лучше вынести в отдельный класс formatter */
     public function asDateTime(): \DateTime
     {
         $value = (string)$this->getValue();
@@ -32,6 +33,7 @@ class UnixMillisecond
 
     /**
      * Интересно, что создать объект DateTime из формата Uv нельзя, а вот готовый объект отформатировать в Uv можно...
+     * Но оно и логично, почему нельзя. Длина Unix секунд переменчива.
      */
     public static function fromDateTime(\DateTime $date): self
     {
